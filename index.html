@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="description"
-        content="Lessons and Insights from a Unifying Study of Parameter-Efficient Fine-Tuning (PEFT) in Visual Recognition">
+        content="AVA-Bench: Atomic Visual Ability Benchmark for Vision Foundation Models">
   <meta name="keywords" content="ViT PEFT">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>AVA-Bench: Atomic Visual Ability Benchmark for Vision Foundation Models</title>
@@ -44,28 +44,33 @@
           <h1 class="title is-1 publication-title">
             AVA-Bench: <u>A</u>tomic <u>V</u>isual <u>U</u>bility Benchmark for Vision Foundation Models
           </h1>
-          <h1  style="color:#7d3c98;font-size: 1.875em;font-weight: bold;">
-          		CVPR'25 (Highlight)
-          </h1>
+          <!---<h1  style="color:#7d3c98;font-size: 1.875em;font-weight: bold;">
+          		arxiv'25
+          </h1> --->
           <br>
-          <div class="is-size-5 publication-authors">
+          <div class="is-size-6 publication-authors">
             <span class="author-block">
-              <a href="https://zheda-mai.github.io/">Zheda Mai</a><sup>1</sup>,
+              <a href="https://zheda-mai.github.io/">Zheda Mai</a><sup>1*</sup>,
             </span>
             <span class="author-block">
-              <a href="https://pizhn.github.io/">Ping Zhang</a><sup>1</sup>,
+              <a href="https://arpita-chowdhury-osu.github.io/">Arpita Chowdhury</a><sup>1*</sup>,<br>
+            </span>
+          </div>
+          <div class="is-size-6 publication-authors">
+            <span class="author-block">
+              <a href="">Zihe Wang</a><sup>1</sup>,
             </span>
             <span class="author-block">
-              <a href="">Cheng-Hao Tu</a><sup>1</sup>,
+              <a href="">Sooyoung Jeon</a><sup>1</sup>,
             </span>
             <span class="author-block">
-              <a href="">Hong-You Chen</a><sup>1</sup>,
-            </span>
-            <span class="author-block">
-              <a href="https://quanghuy0497.github.io/">Quang-Huy Nguyen</a><sup>1</sup>,
+              <a href="">Lemeng Wang</a><sup>1</sup>,
             </span>            
             <span class="author-block">
-              <a href="">Li Zhang</a><sup>2</sup>,
+              <a href="">Jiacheng Hou</a><sup>1</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://heendung.github.io/">Jihyung Kil</a><sup>2</sup>,
             </span>
             <span class="author-block">
               <a href="https://sites.google.com/view/wei-lun-harry-chao?pli=1">Wei-Lun Chao</a><sup>1</sup>
@@ -74,11 +79,12 @@
 
           <div class="is-size-5 publication-authors">
             <span class="author-block"><sup>1</sup>The Ohio State University,</span>
-            <span class="author-block"><sup>2</sup>Google</span>
+            <span class="author-block"><sup>2</sup>Adobe Research</span>
           </div>
 
           <div>
-            <p style="font-size: 15px !important;">mai.145@osu.edu</p>
+            <p style="font-size: 15px !important;">*Equal Contribution</p>
+            <p style="font-size: 15px !important;">{mai.145, chowdhury.150}@osu.edu</p>
           </div>
 
           <div class="column has-text-centered">
@@ -96,22 +102,33 @@
               </span>
               -->
               <span class="link-block">
-                <a href="https://arxiv.org/abs/2409.16434"
+                <a href=""
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                       <i class="ai ai-arxiv"></i>
                   </span>
-                  <span>CVPR'25 (Highlight)</span>
+                  <span>Arxiv</span>
                 </a>
               </span>
+              <!-- Dataset Link. -->
+              <span class="link-block">
+                <a href=""
+                    class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Data(Coming Soon)</span>
+                </a>
+              </span>
+              
               <!-- Code Link. -->
               <span class="link-block">
-                <a href="https://github.com/OSU-MLB/ViT_PEFT_Vision"
+                <a href=""
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                       <i class="fab fa-github"></i>
                   </span>
-                  <span>Code</span>
+                  <span>Code(Coming Soon)</span>
                 </a>
               </span>
             </div>
@@ -121,6 +138,12 @@
     </div>
   </div>
 </section>
+<!-- Figure_1-->
+<figure style="text-align: center;">
+  <img src="Figures/ava_every_sample-1.png" alt="14 AVA Samples" style="width: 900px; max-width: 1400px; height: auto; display: block; margin: 0 auto;">
+  <figcaption style="text-align: center;"><em>AVA-BENCH consists of 14 Atomic Visual Abilities (AVAs) that can be combined to address more
+    complex visual reasoning tasks.</em></figcaption>
+</figure>
 
 <section class="section">
   <div class="container is-max-desktop">
@@ -130,7 +153,25 @@
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
           <p>
-            Parameter-efficient fine-tuning (PEFT) has attracted significant attention due to the growth of pre-trained model sizes and the need to fine-tune (FT) them for superior downstream performance. Despite a surge in new PEFT methods, a systematic study to understand their performance and suitable application scenarios is lacking, leaving questions like "when to apply PEFT" and "which method to use" largely unanswered, especially in visual recognition. In this paper, we conduct a unifying empirical study of representative PEFT methods with Vision Transformers. We systematically tune their hyper-parameters to fairly compare their accuracy on downstream tasks. Our study offers a practical user guide and unveils several new insights. First, if tuned carefully, different PEFT methods achieve similar accuracy in the low-shot benchmark VTAB-1K. This includes simple approaches like FT the bias terms that were reported inferior. Second, despite similar accuracy, we find that PEFT methods make different mistakes and high-confidence predictions, likely due to their different inductive biases. Such an inconsistency (or complementarity) opens up the opportunity for ensemble methods, and we make preliminary attempts at this. Third, going beyond the commonly used low-shot tasks, we find that PEFT is also useful in many-shot regimes, achieving comparable or better accuracy than full FT while using significantly fewer parameters. Lastly, we investigate PEFT's ability to preserve a pre-trained model's robustness to distribution shifts (e.g., CLIP). Perhaps not surprisingly, PEFT approaches outperform full FT alone. However, with weight-space ensembles, full FT can better balance target distribution and distribution shift performance, suggesting a future research direction for robust PEFT.
+            The rise of vision foundation models (VFMs) calls for systematic evaluation. A
+            common approach pairs VFMs with large language models (LLMs) as general-
+            purpose heads, followed by evaluation on broad Visual Question Answering (VQA)
+            benchmarks. However, this protocol has two key blind spots: (i) the instruction
+            tuning data may not align with VQA test distributions, meaning a wrong prediction
+            can stem from such data mismatch rather than a VFM’ visual shortcomings; (ii)
+            VQA benchmarks often require multiple visual abilities, making it hard to tell
+            whether errors stem from lacking all required abilities or just a single critical
+            one. To address these gaps, we introduce AVA-BENCH, the first benchmark that
+            explicitly disentangles 14 Atomic Visual Abilities (AVAs)—foundational skills like
+            localization, depth estimation, and spatial understanding that collectively support
+            complex visual reasoning tasks. By decoupling AVAs and matching training and
+            test distributions within each, AVA-BENCH pinpoints exactly where a VFM excels
+            or falters. Applying AVA-BENCH to leading VFMs thus reveals distinctive “ability
+            fingerprints,” turning VFM selection from educated guesswork into principled
+            engineering. Notably, we find that a 0.5B LLM yields similar VFM rankings as a
+            7B LLM while cutting GPU hours by 8×, enabling more efficient evaluation. By
+            offering a comprehensive and transparent benchmark, we hope AVA-BENCH lays
+            the foundation for the next generation of VFMs.
           </p>
         </div>
       </div>
@@ -139,23 +180,42 @@
   </div>
 </section>
 
+<!-- Figure_2-->
+<figure style="text-align: center;">
+  <img src="Figures/sample_two_image.png" alt="14 AVA Samples" style="width: 900px; max-width: 1400px; height: auto; display: block; margin: 0 auto;">
+  <figcaption style="text-align: center;"><em>Visual Question Answering (VQA) often requires multiple atomic visual abilities (AVAs)
+    to answer a question.</em></figcaption>
+</figure>
+<br>
+
+
+
 <!-- Modified Highlights & Insights Section -->
 <section class="section">
   <div class="container is-max-desktop">
     <div class="column is-centered has-text-centered">
       <h2 class="title is-3">Contributions</h2>
-      <div class="content has-text-justified">
-        <ul>
-          <li>
-            <strong>Fair Benchmarking of PEFT Methods</strong>: We provide a systematic framework with a comprehensive code base implementing 16 PEFT methods, which serves as a valuable resource for consistent and reproducible evaluation.
-          </li>
-          <li>
-            <strong>Practical recommendations in various scenarios</strong>: We provide empirical recommendations on when and how to use different PEFT methods in various scenarios, including low-shots, many-shots, different domain gaps, and robustness between in-distribution and OOD.
-          </li>
-          <li>
-            <strong>Inspiring Future Research</strong>: Our findings offer several insightful directions for future research including <em>leveraging prediction differences</em> in other learning paradigms such as semi-supervised learning, <em>robust fine-tuning with PEFT</em>, and providing <em>empirical evidence for PEFT mechanism understanding</em>.
-          </li>
-        </ul>
+      <!-- Flex container to hold the text and the figure side-by-side -->
+      <div style="display: flex; flex-wrap: wrap; justify-content: center; align-items: flex-start;">
+        <!-- Text content (list of contributions) -->
+        <div class="content has-text-justified" style="flex: 2; min-width: 300px; padding: 10px;">
+          <ul>
+            <li>
+              <strong>Systematic Benchmark of Visual Abilities</strong>: We identify critical blind spots in existing evaluation protocols and introduce AVA-BENCH, a systematic, diagnostic, and comprehensive <span style="color:red; font-weight:bold;">VFM evaluation benchmark covering 14 atomic visual abilities (AVAs)</span>, with carefully curated 218K samples with 26 datasets.
+            </li>
+            <li>
+              <strong>Actionable VFM Analysis</strong>: We conduct a detailed evaluation and insightful analysis of diverse leading VFMs, deriving actionable guidance for VFM selection in downstream applications such as customized MLLMs.
+            </li>
+            <li>
+              <strong>Lightweight, Open Evaluation Protocol</strong>: We release a resource-efficient evaluation protocol along with an open-source codebase to facilitate the development of the next generation of accountable and versatile VFMs.
+            </li>
+          </ul>
+        </div>
+        <!-- Figure with image and caption -->
+        <figure style="flex: 1; min-width: 250px; padding: 10px; text-align: center;">
+          <img src="Figures/sunburst_chart_final.png" alt="14 AVA Samples Description" style="width: 100%; height: auto; display: block; margin: 0 auto;">
+          <figcaption style="text-align: center;">Overall statistics of AVA-BENCH</figcaption>
+        </figure>
       </div>
     </div>
   </div>
@@ -167,11 +227,37 @@
     <!-- Visual Effects. -->
     <div class="column is-centered has-text-centered">
       <h2 class="title is-3">Highlights of Insights</h2>
-      <div class="content has-text-justified">
-        <img src="static/images/main.png" style="" alt="">
-      </div>
+      <figure style="text-align: center;">
+        <img src="Figures/image.png" alt="14 AVA Samples" style="width: 900px; max-width: 1400px; height: auto; display: block; margin: 0 auto;">
+        <figcaption style="text-align: center;">Performance comparison of VFMs across all AVAs. (Left) Language-Supervised VFMs with DINOv2
+          as a reference. (Right) Other VFMs with the SigLIP-2 as a reference.</figcaption>
+      </figure>  
     </div>
     <!--/ Visual Effects. -->
+    <!-- Flex container to hold the text and the figure side-by-side -->
+    <div style="display: flex; flex-wrap: wrap; justify-content: center; align-items: flex-start;">
+      <!-- Text content (list of contributions) -->
+      <div class="content has-text-justified" style="flex: 2; min-width: 300px; padding: 10px;">
+        <ul>
+          <li><strong>Language</strong>-supervised VFMs excel broadly across AVAs.</li>
+          <li><strong>All</strong> VFMs perform <strong>well</strong> in certain AVAs (<em>e.g.,</em> relative depth, object recognition).</li>
+          <li>Non-language-aligned VFMs consistently fail <strong>OCR</strong> tasks.</li>
+          <li>Even lower-performing VFMs excel in <strong>at least one</strong> AVA.</li>
+          <li>VFMs perform similarly for <strong>large</strong> objects. Poor performance in some VFMs is mainly due to struggles in <strong>small</strong> objects.</li>
+          <li>Composite task failures typically stem from specific AVA deficiencies rather than general visual incompetence. With Bounding box, all VFMs perform perfectly in spatial AVA; without them, models with weaker localization  perform worse</li>
+        </ul>
+      </div>
+      <!-- Figure with image and caption -->
+      <figure style="flex: 1; min-width: 250px; padding: 10px; text-align: center;">
+        <img src="Figures/localization_vs_spatial.png" alt="14 AVA Samples Description" style="width: 100%; height: auto; display: block; margin: 0 auto;">
+        <figcaption style="text-align: center;"><em>Impact of bounding boxes on spatial reasoning performance.</em> </figcaption>
+      </figure>
+    </div>
+    <figure style="flex: 1; min-width: 250px; padding: 10px; text-align: center;">
+      <img src="Figures/Localization.png" alt="14 AVA Samples Description" style="width: 100%; height: auto; display: block; margin: 0 auto;">
+      <figcaption style="text-align: center;"><em>Detail results for localization for overall and different splits based on the ground-truth’s
+        bounding box size normalized by image size.</em> </figcaption>
+    </figure>
 
   </div>
 </section>
@@ -182,12 +268,7 @@
   <div class="container is-max-desktop content">
     <h2 class="title">BibTeX</h2>
     <pre><code>
-@article{mai2024lessons,
-  title={Lessons learned from a unifying empirical study of parameter-efficient transfer learning (petl) in visual recognition},
-  author={Mai, Zheda and Zhang, Ping and Tu, Cheng-Hao and Chen, Hong-You and Zhang, Li and Chao, Wei-Lun},
-  journal={arXiv preprint arXiv:2409.16434},
-  year={2024}
-}
+      coming soon
     </code></pre>
   </div>
 </section>
